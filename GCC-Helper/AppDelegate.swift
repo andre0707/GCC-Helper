@@ -10,9 +10,6 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
@@ -24,7 +21,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
-
-
+    
+    
+    // MARK: - Menu interactions
+    
+    /// Called when the menu item `Open Readme` is clicked
+    /// - Parameter sender: The menu item which was clicked
+    @IBAction func menuOpenReadme(_ sender: NSMenuItem) {
+        guard let mainVC = NSApplication.shared.mainWindow?.windowController?.contentViewController as? MainVC else { return }
+        
+        mainVC.openReadme()
+    }
 }
-
