@@ -11,7 +11,7 @@ import Foundation
 struct GcLog: Codable {
     /// The geocaching nickname of the log writer
     let name: String
-    /// The unique profile name id. Can be used to open this user in the message centre
+    /// The unique profile name id. Can be used to open this user in the message center
     let nameId: String
     /// The raw value of `GcLogType`
     let logType: Int
@@ -22,7 +22,7 @@ struct GcLog: Codable {
     /// When this log was checked with a challenge checker it will be filled
     var fulfilsChallenge: Bool? = nil
     
-    /// The url to the message centre for the user who wrote this log
+    /// The url to the message center for the user who wrote this log
     var messageUserUrl: String { "https://www.geocaching.com/account/messagecenter?recipientId=\(nameId)" }
 }
 

@@ -36,13 +36,13 @@ class MainVC: NSViewController {
         return queue
     }()
     
-    /// Indicator, if the current opened website in the webView is a project-gc.com website
+    /// Indicator, if the current opened website in the webView is a geocache on geocaching.com website
     private var isGeocachingWebsiteOpen: Bool {
         guard let url = webView.url, url.absoluteString.lowercased().contains("geocaching.com/geocache") else { return false }
         return true
     }
     
-    /// Indicator, if the current opened website in the webView is a project-gc.com website
+    /// Indicator, if the current opened website in the webView is a challenge checker on project-gc.com website
     private var isProjectGcWebsiteOpen: Bool {
         guard let url = webView.url, url.absoluteString.lowercased().contains("project-gc.com/challenges") else { return false }
         return true
@@ -51,13 +51,13 @@ class MainVC: NSViewController {
     
     // MARK: - Outlets
     
-    /// The main web view which will display
+    /// The main web view which will display the websites
     @IBOutlet weak var webView: WKWebView!
     /// The main table view which will display the geocacher names and the challenge status
     @IBOutlet weak var tableView: NSTableView!
     /// The button to read the logs from the geocaching website
     @IBOutlet weak var buttonReadLogs: NSButton!
-    /// The button to check the challenge status for all geocacher on the table view
+    /// The button to check the challenge status for all geocacher in the table view
     @IBOutlet weak var buttonCheckAllUser: NSButton!
     /// The button to check the challenge status of the current selected user in the table view
     @IBOutlet weak var buttonCheckUser: NSButton!
