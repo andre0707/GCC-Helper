@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6527054B275C2FDF001DE146 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6527054A275C2FDF001DE146 /* UserDefaults.swift */; };
 		654362D3274EE69E001536B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654362D2274EE69E001536B5 /* AppDelegate.swift */; };
 		654362D5274EE69E001536B5 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654362D4274EE69E001536B5 /* MainVC.swift */; };
 		654362D7274EE6A4001536B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 654362D6274EE6A4001536B5 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6527054A275C2FDF001DE146 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		654362CF274EE69E001536B5 /* GCC-Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GCC-Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		654362D2274EE69E001536B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		654362D4274EE69E001536B5 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				654362E1274FC26D001536B5 /* GcLog.swift */,
 				654362E52750391A001536B5 /* AsyncOperation.swift */,
 				654362E727503BB3001536B5 /* UseProjectGcCheckerOperation.swift */,
+				6527054A275C2FDF001DE146 /* UserDefaults.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			files = (
 				654362D5274EE69E001536B5 /* MainVC.swift in Sources */,
 				654362E827503BB3001536B5 /* UseProjectGcCheckerOperation.swift in Sources */,
+				6527054B275C2FDF001DE146 /* UserDefaults.swift in Sources */,
 				654362E2274FC26E001536B5 /* GcLog.swift in Sources */,
 				654362E62750391A001536B5 /* AsyncOperation.swift in Sources */,
 				654362D3274EE69E001536B5 /* AppDelegate.swift in Sources */,
@@ -305,7 +309,7 @@
 				CODE_SIGN_ENTITLEMENTS = "GCC-Helper/GCC_Helper.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 258C524YRU;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -333,7 +337,7 @@
 				CODE_SIGN_ENTITLEMENTS = "GCC-Helper/GCC_Helper.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 258C524YRU;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;

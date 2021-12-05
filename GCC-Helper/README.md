@@ -11,6 +11,7 @@ A project-gc.com premium account is also optional, however there is a challenge 
 ## Manual
 
 The app has mainly two parts. On the left hand there is a big browser with a textfield above to enter a url. On the right hand you find several actions in form of buttons as well as a table view. The table view will include geocacher who wrote logs on a geocache website you analysed. 
+There is also a log view at the bottom which will give some feedback about actions and potential occuring errors.
 
 ### Fill the table
 
@@ -25,7 +26,7 @@ Once you filled the table view, you have the option to select a geocacher in the
 
 To check if the selected user actually qualified for the challenge, open the challenge checker website on project-gc.com. If a valid project-gc.com website is opened in the browser, the check functionalities will also enable
 - _Check User_ button will use the geocacher name of the selected row in the table view and set it into the challenge checker and then automatically perform the challenge check
-- _Check All User_ button will start with the top of the list and then automatically perform the challenge check for all users in the table view
+- _Check All User_ button will start with the top of the list and then automatically perform the challenge check for all users in the table view. The checker needs some time to execute, so there is an option to pick a waiting time to wait for the checker. For most accurate results use 60 seconds, that is the longest the checker should run. Depending on traffic and your account status the checker may run a while. Waiting long enough will make sure that GCC-Helper reads the result for the correct user.
 
  In both check cases, GCC-Helper will display the checker result with a green checkmark or red x in the table view. This way you can easily see who actually qualified for the challenge.
 

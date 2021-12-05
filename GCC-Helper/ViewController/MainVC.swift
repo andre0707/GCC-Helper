@@ -48,6 +48,13 @@ class MainVC: NSViewController {
         return true
     }
     
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .medium
+        return formatter
+    }()
+    
     
     // MARK: - Outlets
     
@@ -69,6 +76,10 @@ class MainVC: NSViewController {
     @IBOutlet weak var buttonUrlGo: NSButton!
     /// The text field which holds the url the user can enter and navigate to
     @IBOutlet weak var textFieldUrl: NSTextField!
+    /// The text view which holds log events
+    @IBOutlet weak var textViewLogs: NSTextView!
+    /// The combobox where the user can select how long he wants to wait for the challenge checker
+    @IBOutlet weak var comboBoxCheckerWaitingTime: NSComboBox!
     
     
     // MARK: Functions
@@ -80,6 +91,13 @@ class MainVC: NSViewController {
         webView.navigationDelegate = self
         
         openReadme()
+        
+        comboBoxCheckerWaitingTime.delegate = self
+        comboBoxCheckerWaitingTime.removeAllItems()
+        let values: [Double] = [2, 5, 10, 15, 20, 30, 40, 45, 60, 65, 70]
+        comboBoxCheckerWaitingTime.addItems(withObjectValues: values)
+        let indexToSelect = values.firstIndex(of: UserDefaults.standard.checkerWaitingTime) ?? 1
+        comboBoxCheckerWaitingTime.selectItem(at: indexToSelect)
 
         textFieldUrl.becomeFirstResponder()
         textFieldUrl.isAutomaticTextCompletionEnabled = false
@@ -130,6 +148,7 @@ class MainVC: NSViewController {
         guard let index = selectedRowIndex else { return }
         
         guard let url = URL(string: logsFromWebsite[index].messageUserUrl) else { return }
+        logOnConsole("loading \(url)")
         webView.load(URLRequest(url: url))
     }
     
@@ -139,6 +158,7 @@ class MainVC: NSViewController {
         guard let index = selectedRowIndex else { return }
         
         guard let url = URL(string: logsFromWebsite[index].logLink) else { return }
+        logOnConsole("loading \(url)")
         webView.load(URLRequest(url: url))
     }
     
@@ -148,10 +168,11 @@ class MainVC: NSViewController {
         let input = textFieldUrl.stringValue.lowercased().starts(with: "http") ? textFieldUrl.stringValue : "https://" + textFieldUrl.stringValue
         guard let url = URL(string: input)
         else {
-            print("invalid url: \(input)")
+            logOnConsole("invalid url: \(input)")
             return
         }
         let request = URLRequest(url: url)
+        logOnConsole("loading \(url)")
         webView.load(request)
     }
     
@@ -199,7 +220,7 @@ class MainVC: NSViewController {
       
         webView.evaluateJavaScript(javaScript) { [weak self] result, error in
             if let error = error {
-                print(error)
+                self?.logOnConsole(error.localizedDescription)
                 return
             }
             
@@ -213,7 +234,7 @@ class MainVC: NSViewController {
                 self?.tableView.reloadData()
                 self?.selectNextUser()
             } catch {
-                print(error.localizedDescription)
+                self?.logOnConsole(error.localizedDescription)
             }
         }
     }
@@ -297,6 +318,15 @@ class MainVC: NSViewController {
         buttonCheckUser.isEnabled = isRowSelected && isProjectGcWebsiteOpen
         buttonCheckAllUser.isEnabled = isRowSelected && isProjectGcWebsiteOpen
     }
+    
+    /// Use this function to write something to the error console
+    /// - Parameter text: The text which should be added
+    private func logOnConsole(_ text: String) {
+        let logText = "\(Self.dateFormatter.string(from: Date())): \(text)\n"
+        print(logText)
+        textViewLogs.string += logText
+        textViewLogs.scrollToEndOfDocument(nil)
+    }
 }
 
 
@@ -308,6 +338,7 @@ extension MainVC: WKNavigationDelegate {
         guard let newUrl = webView.url?.absoluteString else { return }
         DispatchQueue.main.async {
             if !newUrl.starts(with: "file") {
+                self.logOnConsole("finished loading \(newUrl)")
                 self.textFieldUrl.stringValue = newUrl
             }
             self.updateButtonStatus()
@@ -362,5 +393,15 @@ extension MainVC: NSTableViewDataSource {
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         return logsFromWebsite[row]
+    }
+}
+
+
+// MARK: - NSComboBoxDelegate
+
+extension MainVC: NSComboBoxDelegate {
+    
+    func comboBoxSelectionDidChange(_ notification: Notification) {
+        UserDefaults.standard.checkerWaitingTime = Double(comboBoxCheckerWaitingTime.stringValue) ?? 5.0
     }
 }

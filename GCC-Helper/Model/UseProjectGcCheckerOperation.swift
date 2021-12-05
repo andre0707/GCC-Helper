@@ -47,7 +47,7 @@ class UseProjectGcCheckerOperation: AsyncOperation {
                 }
                 
                 /// Give the checker some time to run and then read the checker result
-                DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+                DispatchQueue.global().asyncAfter(deadline: .now() + UserDefaults.standard.checkerWaitingTime) {
                     let javaScript = #"document.getElementById('challengeFulfilled').getAttribute('style');"#
                     
                     DispatchQueue.main.async {
