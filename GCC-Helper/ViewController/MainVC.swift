@@ -187,7 +187,7 @@ class MainVC: NSViewController {
         /// This java script will return a list of the cacher who wrote logs json encoded
         let javaScript = #"""
             function analyseLogs() {
-                let logRows = document.getElementById('cache_logs_table').getElementsByTagName('tr');
+                let logRows = Array.from(document.getElementById('cache_logs_table').getElementsByTagName('tr'));
         
                 var logs = [];
 
