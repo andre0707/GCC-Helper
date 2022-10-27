@@ -11,3 +11,10 @@ You can download the latest release from this repository. Check the [release sec
 ## Supported Platforms
 
 Currently GCC-Helper is a macOS only app.
+
+
+## Images
+
+Here is an image of the main view of the app
+
+<img src="./img/gcc-helper.png" width="400" alt="Main view">
